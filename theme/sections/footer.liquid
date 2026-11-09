@@ -1,0 +1,32 @@
+<footer class="site-foot">
+  {% if settings.logo != blank %}
+    {{ settings.logo | image_url: width: 128 | image_tag: width: 64, height: 64, alt: '', loading: 'lazy' }}
+  {% else %}
+    <img src="{{ 'logo-circle.png' | asset_url }}" width="64" height="64" alt="" loading="lazy">
+  {% endif %}
+  <p>
+    <span class="foot-brand">{{ shop.name }}</span>
+    · {{ section.settings.tagline }} ·
+    {% if settings.instagram_url != blank %}
+      <a href="{{ settings.instagram_url }}" target="_blank" rel="noreferrer">
+        @{{ settings.instagram_handle | default: 'lolaandlime' }}
+      </a>
+    {% else %}
+      <a href="https://www.instagram.com/lolaandlime/" target="_blank" rel="noreferrer">@lolaandlime</a>
+    {% endif %}
+  </p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "vintage & collectibles"
+    }
+  ]
+}
+{% endschema %}

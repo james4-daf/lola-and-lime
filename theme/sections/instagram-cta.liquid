@@ -1,0 +1,91 @@
+<section id="instagram" class="igram" aria-labelledby="igram-title">
+  <div class="igram__burst" aria-hidden="true"></div>
+  <div class="igram__copy">
+    <h2 id="igram-title" class="display-title">{{ section.settings.heading }}</h2>
+    {% if section.settings.lede != blank %}
+      <p class="lede">{{ section.settings.lede }}</p>
+    {% endif %}
+    <a
+      class="starburst-btn"
+      href="{{ section.settings.button_link | default: settings.instagram_url | default: 'https://www.instagram.com/lolaandlime/' }}"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <span>{{ section.settings.button_label | newline_to_br }}</span>
+    </a>
+  </div>
+  <div class="igram__stack" aria-hidden="true">
+    {% liquid
+      assign shot_1 = section.settings.image_1
+      assign shot_2 = section.settings.image_2
+      assign shot_3 = section.settings.image_3
+    %}
+    {% if shot_1 != blank %}
+      {{ shot_1 | image_url: width: 600 | image_tag: class: 'stack-shot stack-shot--1', loading: 'lazy', alt: '' }}
+    {% else %}
+      <img class="stack-shot stack-shot--1" src="{{ 'tile-02.png' | asset_url }}" alt="" loading="lazy" width="240" height="300">
+    {% endif %}
+    {% if shot_2 != blank %}
+      {{ shot_2 | image_url: width: 600 | image_tag: class: 'stack-shot stack-shot--2', loading: 'lazy', alt: '' }}
+    {% else %}
+      <img class="stack-shot stack-shot--2" src="{{ 'tile-11.png' | asset_url }}" alt="" loading="lazy" width="240" height="300">
+    {% endif %}
+    {% if shot_3 != blank %}
+      {{ shot_3 | image_url: width: 600 | image_tag: class: 'stack-shot stack-shot--3', loading: 'lazy', alt: '' }}
+    {% else %}
+      <img class="stack-shot stack-shot--3" src="{{ 'tile-12.png' | asset_url }}" alt="" loading="lazy" width="240" height="300">
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram CTA",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The booth lives on Instagram"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Supporting text",
+      "default": "New pulls, uranium glow-checks, shirt drops, and “we’re here tonight” posts land first at @lolaandlime."
+    },
+    {
+      "type": "textarea",
+      "id": "button_label",
+      "label": "Starburst button label",
+      "default": "Follow\nthe lime"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Stack image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Stack image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Stack image 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram CTA"
+    }
+  ]
+}
+{% endschema %}

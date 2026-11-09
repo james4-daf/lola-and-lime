@@ -1,0 +1,24 @@
+<section class="collection-page" aria-labelledby="CollectionsTitle">
+  <div class="section-head">
+    <p class="hand-label">browse</p>
+    <h1 id="CollectionsTitle" class="display-title">Collections</h1>
+  </div>
+
+  <ul class="finds__grid">
+    {% for collection in collections %}
+      {% unless collection.handle == 'frontpage' %}
+        <li class="clip clip--teal">
+          <h3><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
+          <p>{{ collection.products_count }} finds</p>
+        </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

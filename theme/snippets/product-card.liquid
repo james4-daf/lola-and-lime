@@ -1,0 +1,87 @@
+{% comment %}
+  Product card with sold-out badge + gallery-friendly hover second image.
+  Accepts:
+  - product: {Product}
+  - lazy: boolean (optional)
+{% endcomment %}
+
+{% liquid
+  assign card_product = product
+  assign show_sold_out = false
+  if card_product.available == false
+    assign show_sold_out = true
+  endif
+
+  assign featured = card_product.featured_media
+  assign hover_media = nil
+  if card_product.media.size > 1
+    for media in card_product.media
+      if media.id != featured.id and media.media_type == 'image'
+        assign hover_media = media
+        break
+      endif
+    endfor
+  endif
+
+  assign has_hover = false
+  if hover_media != blank
+    assign has_hover = true
+  endif
+
+  assign loading_attr = 'lazy'
+  if lazy == false
+    assign loading_attr = 'eager'
+  endif
+%}
+
+<a
+  class="product-card{% if show_sold_out %} product-card--sold-out{% endif %}{% if has_hover %} product-card--has-hover{% endif %}"
+  href="{{ card_product.url }}"
+  data-product-id="{{ card_product.id }}"
+  data-available="{{ card_product.available }}"
+  {% if has_hover %}data-gallery-hover="true"{% endif %}
+>
+  <div class="product-card__media">
+    {% if show_sold_out %}
+      <span class="product-card__badge product-card__badge--sold-out">
+        {{ 'products.card.sold_out' | t }}
+      </span>
+    {% endif %}
+
+    {% if featured != blank %}
+      {{
+        featured
+        | image_url: width: 800
+        | image_tag:
+          class: 'product-card__img product-card__img--primary',
+          loading: loading_attr,
+          widths: '220, 320, 480, 640, 800',
+          sizes: '(min-width: 1100px) 250px, 45vw',
+          alt: featured.alt | default: card_product.title
+      }}
+      {% if has_hover %}
+        {{
+          hover_media
+          | image_url: width: 800
+          | image_tag:
+            class: 'product-card__img product-card__img--hover',
+            loading: 'lazy',
+            widths: '220, 320, 480, 640, 800',
+            sizes: '(min-width: 1100px) 250px, 45vw',
+            alt: hover_media.alt | default: card_product.title
+        }}
+      {% endif %}
+    {% else %}
+      <div class="product-card__img" style="display:grid;place-items:center;background:var(--cream-ticket);height:100%;font-family:var(--font-hand);font-size:1.4rem;">
+        no photo yet
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-card__body">
+    <h3 class="product-card__title">{{ card_product.title }}</h3>
+    <p class="product-card__price">
+      {% render 'price', product: card_product %}
+    </p>
+  </div>
+</a>

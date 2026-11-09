@@ -1,0 +1,45 @@
+<section class="search-page" aria-labelledby="SearchTitle">
+  <div class="section-head">
+    <h1 id="SearchTitle" class="display-title">{{ 'templates.search.title' | t }}</h1>
+  </div>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" style="display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+    <input
+      type="search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'templates.search.placeholder' | t }}"
+      style="font:inherit;border:2.5px solid var(--ink);background:var(--paper);padding:0.55rem 0.7rem;min-width:min(320px,100%);box-shadow:2px 2px 0 var(--ink);"
+    >
+    <button type="submit" class="dymo">{{ 'general.search' | t }}</button>
+  </form>
+
+  {% if search.performed %}
+    {% if search.results_count == 0 %}
+      <p class="products-empty">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+    {% else %}
+      <p class="lede" style="text-align:center;margin-bottom:1.25rem;">
+        {{ 'templates.search.results_count' | t: count: search.results_count }}
+      </p>
+      <ul class="product-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            <li>{% render 'product-card', product: item %}</li>
+          {% else %}
+            <li class="clip clip--cream">
+              <h3>{{ item.title }}</h3>
+              <a href="{{ item.url }}">Open</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

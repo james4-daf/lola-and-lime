@@ -1,0 +1,54 @@
+<section class="collection-page" aria-labelledby="CollectionTitle">
+  <div class="section-head">
+    <p class="hand-label">collection</p>
+    <h1 id="CollectionTitle" class="display-title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="lede">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  {% paginate collection.products by section.settings.products_per_page %}
+    {% if collection.products.size > 0 %}
+      <ul class="product-grid">
+        {% for product in collection.products %}
+          <li>
+            {% render 'product-card', product: product %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if paginate.pages > 1 %}
+        <nav class="ticket-nav" style="margin-top:2rem;" aria-label="Pagination">
+          {% if paginate.previous %}
+            <a class="ticket ticket--teal" href="{{ paginate.previous.url }}">Prev</a>
+          {% endif %}
+          <span class="ticket ticket--yellow" aria-current="page">
+            {{ paginate.current_page }} / {{ paginate.pages }}
+          </span>
+          {% if paginate.next %}
+            <a class="ticket ticket--lime" href="{{ paginate.next.url }}">Next</a>
+          {% endif %}
+        </nav>
+      {% endif %}
+    {% else %}
+      <p class="products-empty">{{ 'collections.general.empty' | t }}</p>
+    {% endif %}
+  {% endpaginate %}
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}

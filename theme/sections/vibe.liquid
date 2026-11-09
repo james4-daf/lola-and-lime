@@ -1,0 +1,43 @@
+<section id="vibe" class="vibe" aria-labelledby="vibe-title">
+  <div class="vibe__inner">
+    <h2 id="vibe-title" class="display-title">{{ section.settings.heading }}</h2>
+    {% if section.settings.lede != blank %}
+      <p class="lede">{{ section.settings.lede }}</p>
+    {% endif %}
+    {% if section.settings.quote != blank %}
+      <p class="quote-strip">{{ section.settings.quote }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vibe",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About the vibe"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Supporting text",
+      "default": "Lola & Lime is a handmade, high-contrast treasure hunt — retro-kitsch, a little tiki, a lot of cut-and-paste. Think 60s–70s scrapbook pages taped over a flea-market tablecloth, not a minimal web shop."
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote strip",
+      "default": "“If it glows, clinks, or looks like it survived a backyard luau — it belongs here.”"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vibe"
+    }
+  ]
+}
+{% endschema %}

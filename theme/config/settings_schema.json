@@ -1,0 +1,40 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Lola & Lime",
+    "theme_version": "1.0.0",
+    "theme_author": "Lola & Lime",
+    "theme_documentation_url": "https://github.com/james4-daf/lola-and-lime",
+    "theme_support_url": "https://www.instagram.com/lolaandlime/"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "instagram_handle",
+        "label": "Instagram handle",
+        "default": "lolaandlime"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Core palette is locked in theme.css (teal / lime / orange). Use section settings for per-block accents."
+      }
+    ]
+  }
+]

@@ -1,0 +1,115 @@
+<section class="hero" aria-labelledby="brand-title">
+  <div class="hero__atmosphere" aria-hidden="true">
+    <div class="hero__halftone"></div>
+    <div class="hero__blob hero__blob--teal"></div>
+    <div class="hero__blob hero__blob--lime"></div>
+    <div class="hero__starburst"></div>
+  </div>
+
+  <div class="hero__stage">
+    {% if settings.logo != blank %}
+      {{
+        settings.logo
+        | image_url: width: 440
+        | image_tag:
+          class: 'hero__logo wobble',
+          width: 220,
+          height: 220,
+          alt: shop.name | append: ' logo',
+          loading: 'eager'
+      }}
+    {% else %}
+      <img
+        class="hero__logo wobble"
+        src="{{ 'logo-circle.png' | asset_url }}"
+        width="220"
+        height="220"
+        alt="{{ shop.name }} logo — teal circle with a lime wedge"
+        loading="eager"
+      >
+    {% endif %}
+
+    <h1 id="brand-title" class="hero__brand">
+      <span class="hero__brand-line">{{ section.settings.brand_line_1 }}</span>
+      <span class="hero__amp">&amp;</span>
+      <span class="hero__brand-line">{{ section.settings.brand_line_2 }}</span>
+    </h1>
+
+    {% if section.settings.tag != blank %}
+      <p class="hero__tag">{{ section.settings.tag }}</p>
+    {% endif %}
+
+    <div class="hero__ctas">
+      {% if section.settings.primary_label != blank %}
+        <a
+          class="dymo"
+          href="{{ section.settings.primary_link | default: settings.instagram_url | default: 'https://www.instagram.com/lolaandlime/' }}"
+          {% if section.settings.primary_link == blank or section.settings.primary_link contains 'instagram.com' %}
+            target="_blank" rel="noreferrer"
+          {% endif %}
+        >
+          {{ section.settings.primary_label }}
+        </a>
+      {% endif %}
+      {% if section.settings.secondary_label != blank %}
+        <a class="dymo dymo--outline" href="{{ section.settings.secondary_link | default: '#markets' }}">
+          {{ section.settings.secondary_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_line_1",
+      "label": "Brand line 1",
+      "default": "Lola"
+    },
+    {
+      "type": "text",
+      "id": "brand_line_2",
+      "label": "Brand line 2",
+      "default": "Lime"
+    },
+    {
+      "type": "textarea",
+      "id": "tag",
+      "label": "Supporting sentence",
+      "default": "Vintage glass, kitschy decor, barware, uranium glow & Hawaiian shirts — scooped from the Ontario flea circuit and slapped onto the booth like a scrapbook page."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary CTA label",
+      "default": "@lolaandlime"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "default": "where to shop"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
