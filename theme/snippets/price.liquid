@@ -1,0 +1,20 @@
+{% comment %}
+  Renders product price. Accepts product or optionally compare_at via product.
+{% endcomment %}
+
+{% liquid
+  assign target = product.selected_or_first_available_variant
+  if target == blank
+    assign target = product.variants.first
+  endif
+%}
+
+{% if product.price_varies %}
+  {{ 'products.card.from' | t }}
+  {{ product.price_min | money }}
+{% else %}
+  {% if target.compare_at_price > target.price %}
+    <s>{{ target.compare_at_price | money }}</s>
+  {% endif %}
+  {{ target.price | money }}
+{% endif %}

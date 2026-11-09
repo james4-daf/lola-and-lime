@@ -1,0 +1,184 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "brand_line_1": "Lola",
+        "brand_line_2": "Lime",
+        "tag": "Vintage glass, kitschy decor, barware, uranium glow & Hawaiian shirts — scooped from the Ontario flea circuit and slapped onto the booth like a scrapbook page.",
+        "primary_label": "@lolaandlime",
+        "secondary_label": "where to shop",
+        "secondary_link": "#markets"
+      }
+    },
+    "finds": {
+      "type": "finds",
+      "blocks": {
+        "cat_glass": {
+          "type": "category",
+          "settings": {
+            "title": "Vintage glass",
+            "body": "Cut crystal, milk glass, and the weird pretty stemware nobody else grabbed.",
+            "badge": "★",
+            "accent": "orange"
+          }
+        },
+        "cat_decor": {
+          "type": "category",
+          "settings": {
+            "title": "Decor & kitsch",
+            "body": "Figurines, florals, and mid-century oddities that look like a thrift score.",
+            "badge": "♥",
+            "accent": "teal"
+          }
+        },
+        "cat_bar": {
+          "type": "category",
+          "settings": {
+            "title": "Barware",
+            "body": "Cocktail shakers, tumblers, and pour-ready pieces for a tiki-adjacent shelf.",
+            "badge": "!",
+            "accent": "yellow"
+          }
+        },
+        "cat_uranium": {
+          "type": "category",
+          "settings": {
+            "title": "Uranium glass",
+            "body": "The glow-under-blacklight crowd. Bring a light. Leave with something radioactive-cute.",
+            "badge": "☢",
+            "accent": "lime"
+          }
+        },
+        "cat_ads": {
+          "type": "category",
+          "settings": {
+            "title": "Vintage ads",
+            "body": "Paper ephemera and printed nostalgia — framed, stacked, or still in the crate.",
+            "badge": "✿",
+            "accent": "pink"
+          }
+        },
+        "cat_shirts": {
+          "type": "category",
+          "settings": {
+            "title": "Hawaiian shirts",
+            "body": "Loud prints, soft cotton, vacation energy with zero itinerary required.",
+            "badge": "🌺",
+            "accent": "cream"
+          }
+        }
+      },
+      "block_order": [
+        "cat_glass",
+        "cat_decor",
+        "cat_bar",
+        "cat_uranium",
+        "cat_ads",
+        "cat_shirts"
+      ],
+      "settings": {
+        "hand_label": "fresh from the crates",
+        "heading": "What you’ll find",
+        "lede": "No fake storefront inventory here — just the categories that keep the booth humming. Plug a collection into Featured products when you’re ready to sell online."
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "hand_label": "fresh pulls",
+        "heading": "Shop the booth",
+        "lede": "When products are live, they land here. Cards show sold-out badges and swap to a second photo on hover when a gallery exists.",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "empty_text": "No products plugged in yet — pick a collection in the theme editor once inventory is ready."
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "blocks": {
+        "p1": {
+          "type": "polaroid",
+          "settings": { "caption": "booth night · 613flea" }
+        },
+        "p2": {
+          "type": "polaroid",
+          "settings": { "caption": "ticket pile energy" }
+        },
+        "p3": {
+          "type": "polaroid",
+          "settings": { "caption": "we are HERE" }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {}
+    },
+    "markets": {
+      "type": "markets",
+      "blocks": {
+        "m1": {
+          "type": "market",
+          "settings": {
+            "raffle": "ADMIT ONE",
+            "raffle_accent": "orange",
+            "title": "Almonte Antiques & Collectibles",
+            "body": "Home base vibes with fellow treasure hunters.",
+            "link_label": "@aac_almonte",
+            "link": "https://www.instagram.com/aac_almonte/"
+          }
+        },
+        "m2": {
+          "type": "market",
+          "settings": {
+            "raffle": "GOOD TIMES",
+            "raffle_accent": "teal",
+            "title": "Murray’s Flea Market",
+            "body": "Weekend rummage royalty in the 613 scene.",
+            "link_label": "@murraysfleamarket",
+            "link": "https://www.instagram.com/murraysfleamarket/"
+          }
+        },
+        "m3": {
+          "type": "market",
+          "settings": {
+            "raffle": "POP-UP",
+            "raffle_accent": "yellow",
+            "title": "613flea & friends",
+            "body": "Lansdowne nights, horticulture-building chaos, free admission energy. Watch the gram for booth drops."
+          }
+        }
+      },
+      "block_order": ["m1", "m2", "m3"],
+      "settings": {
+        "hand_label": "catch us in the wild",
+        "heading": "Where to shop",
+        "lede": "Ontario’s flea & antique circuit — Almonte, Murray’s, and pop-up flea nights when the calendar says go."
+      }
+    },
+    "instagram": {
+      "type": "instagram-cta",
+      "settings": {
+        "heading": "The booth lives on Instagram",
+        "lede": "New pulls, uranium glow-checks, shirt drops, and “we’re here tonight” posts land first at @lolaandlime.",
+        "button_label": "Follow\nthe lime"
+      }
+    },
+    "vibe": {
+      "type": "vibe",
+      "settings": {
+        "heading": "About the vibe",
+        "lede": "Lola & Lime is a handmade, high-contrast treasure hunt — retro-kitsch, a little tiki, a lot of cut-and-paste. Think 60s–70s scrapbook pages taped over a flea-market tablecloth, not a minimal web shop.",
+        "quote": "“If it glows, clinks, or looks like it survived a backyard luau — it belongs here.”"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "finds",
+    "featured",
+    "collage",
+    "markets",
+    "instagram",
+    "vibe"
+  ]
+}

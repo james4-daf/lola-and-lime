@@ -1,0 +1,17 @@
+<section class="not-found" aria-labelledby="NotFoundTitle">
+  <div class="section-head">
+    <p class="hand-label">404</p>
+    <h1 id="NotFoundTitle" class="display-title">{{ 'templates.404.title' | t }}</h1>
+    <p class="lede">{{ 'templates.404.subtext' | t }}</p>
+    <p style="margin-top:1.25rem;">
+      <a class="dymo" href="{{ routes.root_url }}">{{ 'templates.404.link' | t }}</a>
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": []
+}
+{% endschema %}

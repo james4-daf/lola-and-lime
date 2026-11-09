@@ -1,0 +1,54 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "continue_shopping": "Keep hunting",
+    "search": "Search"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to crate",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": "Price"
+    },
+    "card": {
+      "sold_out": "Sold out",
+      "from": "From"
+    }
+  },
+  "collections": {
+    "general": {
+      "empty": "Nothing in this crate yet — check back after the next flea haul.",
+      "no_matches": "No matches."
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your crate",
+      "empty": "Your crate is empty.",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "update": "Update"
+    }
+  },
+  "templates": {
+    "404": {
+      "title": "Lost in the flea maze",
+      "subtext": "That page wandered off. Head back to the booth.",
+      "link": "Back to home"
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search finds…",
+      "no_results": "No finds for “{{ terms }}”.",
+      "results_count": {
+        "one": "{{ count }} find",
+        "other": "{{ count }} finds"
+      }
+    }
+  }
+}

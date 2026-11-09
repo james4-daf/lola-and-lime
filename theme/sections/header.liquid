@@ -1,0 +1,37 @@
+<header class="top-strip" aria-label="Site">
+  <nav class="ticket-nav" aria-label="Primary">
+    {% for link in section.settings.menu.links %}
+      {% liquid
+        assign ticket_class = 'ticket--teal'
+        assign mod = forloop.index0 | modulo: 4
+        if mod == 1
+          assign ticket_class = 'ticket--yellow'
+        elsif mod == 2
+          assign ticket_class = 'ticket--pink'
+        elsif mod == 3
+          assign ticket_class = 'ticket--lime'
+        endif
+      %}
+      <a class="ticket {{ ticket_class }}" href="{{ link.url }}">{{ link.title }}</a>
+    {% else %}
+      <a class="ticket ticket--teal" href="#finds">the finds</a>
+      <a class="ticket ticket--yellow" href="#markets">markets</a>
+      <a class="ticket ticket--pink" href="{{ routes.collections_url }}">shop</a>
+      <a class="ticket ticket--lime" href="#instagram">instagram</a>
+    {% endfor %}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

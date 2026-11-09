@@ -1,0 +1,155 @@
+<section id="markets" class="markets" aria-labelledby="markets-title">
+  <div class="markets__panel">
+    {% if section.settings.hand_label != blank %}
+      <p class="hand-label">{{ section.settings.hand_label }}</p>
+    {% endif %}
+    <h2 id="markets-title" class="display-title display-title--light">{{ section.settings.heading }}</h2>
+    {% if section.settings.lede != blank %}
+      <p class="lede lede--light">{{ section.settings.lede }}</p>
+    {% endif %}
+
+    <div class="market-stack">
+      {% for block in section.blocks %}
+        {% liquid
+          assign raffle_class = ''
+          case block.settings.raffle_accent
+            when 'teal'
+              assign raffle_class = 'raffle--teal'
+            when 'yellow'
+              assign raffle_class = 'raffle--yellow'
+          endcase
+          assign tilt = ''
+          if forloop.index0 == 1
+            assign tilt = 'market-card--tilt'
+          endif
+        %}
+        <article class="market-card {{ tilt }}" {{ block.shopify_attributes }}>
+          {% if block.settings.raffle != blank %}
+            <span class="raffle {{ raffle_class }}" aria-hidden="true">{{ block.settings.raffle }}</span>
+          {% endif %}
+          <h3>{{ block.settings.title }}</h3>
+          <p>
+            {{ block.settings.body }}
+            {% if block.settings.link_label != blank and block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" target="_blank" rel="noreferrer">{{ block.settings.link_label }}</a>
+            {% endif %}
+          </p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Markets",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hand_label",
+      "label": "Handwritten label",
+      "default": "catch us in the wild"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where to shop"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Supporting text",
+      "default": "Ontario’s flea & antique circuit — Almonte, Murray’s, and pop-up flea nights when the calendar says go."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "market",
+      "name": "Market",
+      "settings": [
+        {
+          "type": "text",
+          "id": "raffle",
+          "label": "Raffle ticket text",
+          "default": "ADMIT ONE"
+        },
+        {
+          "type": "select",
+          "id": "raffle_accent",
+          "label": "Raffle accent",
+          "options": [
+            { "value": "orange", "label": "Orange" },
+            { "value": "teal", "label": "Teal" },
+            { "value": "yellow", "label": "Yellow" }
+          ],
+          "default": "orange"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Market name"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Details about this market."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Markets",
+      "blocks": [
+        {
+          "type": "market",
+          "settings": {
+            "raffle": "ADMIT ONE",
+            "raffle_accent": "orange",
+            "title": "Almonte Antiques & Collectibles",
+            "body": "Home base vibes with fellow treasure hunters.",
+            "link_label": "@aac_almonte",
+            "link": "https://www.instagram.com/aac_almonte/"
+          }
+        },
+        {
+          "type": "market",
+          "settings": {
+            "raffle": "GOOD TIMES",
+            "raffle_accent": "teal",
+            "title": "Murray’s Flea Market",
+            "body": "Weekend rummage royalty in the 613 scene.",
+            "link_label": "@murraysfleamarket",
+            "link": "https://www.instagram.com/murraysfleamarket/"
+          }
+        },
+        {
+          "type": "market",
+          "settings": {
+            "raffle": "POP-UP",
+            "raffle_accent": "yellow",
+            "title": "613flea & friends",
+            "body": "Lansdowne nights, horticulture-building chaos, free admission energy. Watch the gram for booth drops.",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{
+  "current": {
+    "instagram_handle": "lolaandlime",
+    "instagram_url": "https://www.instagram.com/lolaandlime/",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

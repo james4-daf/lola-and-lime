@@ -1,0 +1,15 @@
+<section class="page-generic" aria-labelledby="PageTitle">
+  <div class="section-head">
+    <h1 id="PageTitle" class="display-title">{{ page.title }}</h1>
+  </div>
+  <div class="lede" style="max-width:42rem;">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+<section class="product-page" aria-labelledby="ProductTitle">
+  <div class="product-page__grid">
+    <div class="product-gallery" data-product-gallery>
+      {% if product.media.size > 0 %}
+        <div class="product-gallery__main">
+          <img
+            data-gallery-main
+            src="{{ product.featured_media | image_url: width: 1200 }}"
+            alt="{{ product.featured_media.alt | default: product.title | escape }}"
+            width="600"
+            height="600"
+            loading="eager"
+          >
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="product-gallery__thumbs" role="list">
+            {% for media in product.media %}
+              {% if media.media_type == 'image' %}
+                <button
+                  type="button"
+                  class="product-gallery__thumb"
+                  data-gallery-thumb
+                  data-full-src="{{ media | image_url: width: 1200 }}"
+                  data-alt="{{ media.alt | default: product.title | escape }}"
+                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                  aria-label="View image {{ forloop.index }}"
+                >
+                  {{
+                    media
+                    | image_url: width: 160
+                    | image_tag: loading: 'lazy', alt: media.alt | default: product.title, width: 68, height: 68
+                  }}
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="product-gallery__main" style="display:grid;place-items:center;font-family:var(--font-hand);font-size:1.5rem;">
+          no photo yet
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="product-form will-reveal-target">
+      <p class="hand-label">{{ section.settings.eyebrow }}</p>
+      <h1 id="ProductTitle" class="display-title" style="font-size: clamp(2rem, 6vw, 3.2rem);">
+        {{ product.title }}
+      </h1>
+      <p class="product-card__price" style="font-size:1.15rem;">
+        {% render 'price', product: product %}
+      </p>
+
+      {% if product.description != blank %}
+        <div class="lede" style="max-width:none;text-align:left;">
+          {{ product.description }}
+        </div>
+      {% endif %}
+
+      {% form 'product', product %}
+        {% unless product.has_only_default_variant %}
+          <label>
+            Variant
+            <select name="id" required>
+              {% for variant in product.variants %}
+                <option
+                  value="{{ variant.id }}"
+                  {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  {{ variant.title }} — {{ variant.price | money }}
+                  {% unless variant.available %} ({{ 'products.product.sold_out' | t }}){% endunless %}
+                </option>
+              {% endfor %}
+            </select>
+          </label>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+
+        <label>
+          {{ 'products.product.quantity' | t }}
+          <input type="number" name="quantity" min="1" value="1">
+        </label>
+
+        <button
+          type="submit"
+          class="dymo"
+          name="add"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+        >
+          {% if product.selected_or_first_available_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "from the crate"
+    }
+  ]
+}
+{% endschema %}
